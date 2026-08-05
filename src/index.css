@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=EB+Garamond:wght@400;500&family=Parisienne&display=swap');
+
+:root {
+  --text: #6d6478;
+  --text-h: #4a3f5c;
+  --bg: #faf8f4;
+  --page-bg: #e8e1ee;
+  --border: #e3d9ec;
+  --code-bg: #f2edf6;
+  --accent: #a68fc4;
+  --accent-soft: #c9b6de;
+  --accent-deep: #7d6499;
+  --accent-bg: rgba(166, 143, 196, 0.12);
+  --accent-border: rgba(166, 143, 196, 0.45);
+  --social-bg: rgba(242, 237, 246, 0.6);
+  --shadow:
+    rgba(74, 63, 92, 0.08) 0 10px 24px -8px, rgba(74, 63, 92, 0.05) 0 4px 8px -4px;
+
+  --ancho: 430px;
+
+  --sans: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --script: 'Parisienne', 'Snell Roundhand', 'Brush Script MT', cursive;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 17px/160% var(--sans);
+  letter-spacing: 0.1px;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+}
+
+#root {
+  width: var(--ancho);
+  max-width: 100%;
+  margin: 0 auto;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(166, 143, 196, 0.05) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading);
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+h1 {
+  font-family: var(--script);
+  font-size: 46px;
+  line-height: 120%;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin: 24px 0;
+  @media (max-width: 480px) {
+    font-size: 40px;
+  }
+}
+
+h2 {
+  font-size: 15px;
+  line-height: 140%;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin: 0 0 12px;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 130%;
+  margin: 0 0 8px;
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
