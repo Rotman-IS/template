@@ -518,11 +518,23 @@ section > * {
   background: linear-gradient(to right, transparent, var(--accent-soft), transparent);
 }
 
+/* Contenedor: solo geometría. Proporción del asset floral (1376x768) para que
+   la imagen nunca se deforme; ancho relativo a la sección con tope en píxeles. */
 .ornamento--floral {
   position: absolute;
   z-index: 0;
-  width: 108px;
-  height: 108px;
+  width: 42%;
+  max-width: 190px;
+  aspect-ratio: 1376 / 768;
+}
+
+/* Fallback cuando no se pasa `imagen`: el marcador punteado de siempre. */
+.ornamento__marcador {
+  height: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px dashed var(--accent-border);
   border-radius: 50%;
   background: var(--accent-bg);
@@ -530,6 +542,24 @@ section > * {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--accent-deep);
+}
+
+.ornamento__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* El asset está orientado a la esquina superior izquierda; las otras tres
+   esquinas se derivan de él por transform, sin archivos adicionales. */
+.ornamento--sup-der .ornamento__img {
+  transform: scaleX(-1);
+}
+.ornamento--inf-izq .ornamento__img {
+  transform: scaleY(-1);
+}
+.ornamento--inf-der .ornamento__img {
+  transform: rotate(180deg);
 }
 
 .ornamento--sup-izq {
@@ -790,6 +820,28 @@ section > * {
   text-align: left;
 }
 
+/* Columna angosta: el riel se corre a la izquierda para que la etiqueta
+   disponga de todo el ancho restante. La columna de hora pasa a ancho fijo
+   —si fuera `auto`, cada fila la mediría distinto ("4:30 PM" vs "11:00 PM")
+   y el eje vertical quedaría en zigzag. */
+@media (max-width: 380px) {
+  .itinerario__hito {
+    --riel-hora: 62px;
+    grid-template-columns: var(--riel-hora) auto 1fr;
+  }
+
+  .itinerario__hora {
+    text-align: left;
+  }
+
+  /* Centro del nodo = ancho de la hora + gap + mitad del nodo. El nodo mide
+     48px de caja: 46px de contenido más 1px de borde a cada lado. */
+  .itinerario__hito::before {
+    left: calc(var(--riel-hora) + 14px + 24px);
+    transform: none;
+  }
+}
+
 /* ---------- Vestimenta ---------- */
 
 .vestimenta__codigo {
@@ -900,7 +952,8 @@ section > * {
 
 .cierre__despedida {
   font-family: var(--script);
-  font-size: 40px;
+  font-size: var(--display-2);
   line-height: 120%;
   color: var(--text-h);
+  overflow-wrap: anywhere;
 }

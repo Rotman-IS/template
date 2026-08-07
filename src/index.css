@@ -16,7 +16,22 @@
   --shadow:
     rgba(74, 63, 92, 0.08) 0 10px 24px -8px, rgba(74, 63, 92, 0.05) 0 4px 8px -4px;
 
-  --ancho: 430px;
+  /* Decoración del lienzo que rodea la columna. Solo visible cuando hay
+     márgenes laterales, es decir a partir del ancho de teléfono. */
+  --page-wash: rgba(250, 248, 244, 0.55);
+  --page-dot: rgba(125, 100, 153, 0.07);
+
+  /* La columna en sus tres regímenes: fluida por debajo del ancho de
+     teléfono, 430px hasta tablet vertical, ensanchada en escritorio
+     (ver el @media de más abajo). */
+  --ancho: min(430px, 100%);
+
+  /* Escala del display, ligada al ancho de la columna vía `cqi` y no al del
+     viewport: entre 900px y 1440px de ventana la columna ya no crece, y el
+     texto tampoco debe hacerlo. Un navegador sin container queries cae al
+     mínimo del clamp. */
+  --display-1: clamp(34px, 10.4cqi, 54px);
+  --display-2: clamp(30px, 9.2cqi, 46px);
 
   --sans: 'EB Garamond', Georgia, 'Times New Roman', serif;
   --heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -38,6 +53,15 @@
   }
 }
 
+/* Escritorio y tablet apaisada. A 768px (iPad vertical) la columna de
+   teléfono sigue siendo la lectura correcta del formato, así que el único
+   breakpoint del contenedor está a 900px. */
+@media (min-width: 900px) {
+  :root {
+    --ancho: 540px;
+  }
+}
+
 #root {
   width: var(--ancho);
   max-width: 100%;
@@ -47,7 +71,10 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  overflow-x: hidden;
+  /* Contexto de consulta: es lo que hace que `cqi` mida la columna. Sin
+     `overflow-x: hidden`: el desborde se corrige en su origen, taparlo lo
+     vuelve un fallo silencioso. */
+  container-type: inline-size;
   background: var(--bg);
   background-image:
     radial-gradient(circle at 50% 50%, rgba(166, 143, 196, 0.05) 1px, transparent 1px);
@@ -56,7 +83,13 @@
 
 body {
   margin: 0;
-  background: var(--page-bg);
+  background-color: var(--page-bg);
+  background-image:
+    radial-gradient(ellipse 120% 70% at 50% 0%, var(--page-wash), transparent),
+    radial-gradient(circle at 50% 50%, var(--page-dot) 1px, transparent 1px);
+  background-size: 100% 100%, 18px 18px;
+  background-repeat: no-repeat, repeat;
+  background-attachment: fixed, fixed;
 }
 
 html {
@@ -73,14 +106,12 @@ h3 {
 
 h1 {
   font-family: var(--script);
-  font-size: 46px;
+  font-size: var(--display-1);
   line-height: 120%;
   font-weight: 400;
   letter-spacing: 0;
   margin: 24px 0;
-  @media (max-width: 480px) {
-    font-size: 40px;
-  }
+  overflow-wrap: anywhere;
 }
 
 h2 {

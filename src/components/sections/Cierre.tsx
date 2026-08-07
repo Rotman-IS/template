@@ -1,4 +1,5 @@
 import Ornamento from '../ui/Ornamento'
+import floral from '../../assets/floral1SB.webp'
 
 const cierre = {
   nota: 'Con mucho cariño, esta celebración es para adolescentes y adultos que puedan compartir y disfrutar juntos.',
@@ -17,8 +18,8 @@ function Cierre() {
 
       <p className="cierre__despedida">{cierre.despedida}</p>
 
-      <Ornamento variant="floral" posicion="inf-izq" />
-      <Ornamento variant="floral" posicion="inf-der" />
+      <Ornamento variant="floral" posicion="inf-izq" imagen={floral} />
+      <Ornamento variant="floral" posicion="inf-der" imagen={floral} />
     </section>
   )
 }

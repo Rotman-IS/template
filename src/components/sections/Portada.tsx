@@ -1,5 +1,6 @@
 import Ornamento from '../ui/Ornamento'
 import Photo from '../ui/Photo'
+import floral from '../../assets/floral1SB.webp'
 
 const portada = {
   cita: '"Hay momentos increíbles que se atesoran en el corazón para siempre, y por eso quiero que compartas conmigo este día tan especial."',
@@ -10,8 +11,8 @@ const portada = {
 function Portada() {
   return (
     <section className="portada" id="portada">
-      <Ornamento variant="floral" posicion="sup-izq" />
-      <Ornamento variant="floral" posicion="sup-der" />
+      <Ornamento variant="floral" posicion="sup-izq" imagen={floral} />
+      <Ornamento variant="floral" posicion="sup-der" imagen={floral} />
 
       <p className="portada__cita">{portada.cita}</p>
 

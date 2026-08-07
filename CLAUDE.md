@@ -41,4 +41,12 @@ Class names are BEM (`.card`, `.card__title`, `.btn--primary`) and live only in 
 
 ## OpenSpec
 
-The repo is set up for the OpenSpec spec-driven workflow ([openspec/config.yaml](openspec/config.yaml), skills under `.claude/skills/`). `openspec/specs/` and `openspec/changes/` are empty — nothing has been proposed yet. `config.yaml` has an empty `context:` section; fill it if the workflow gets used.
+The repo uses the OpenSpec spec-driven workflow ([openspec/config.yaml](openspec/config.yaml), skills under `.claude/skills/`). **`openspec/specs/` is not empty — always read it before proposing.** Current capabilities:
+
+- `invitacion-estructura` — composición de la página, contenedor de ancho móvil, landing anterior conservado en comentarios
+- `invitacion-secciones` — una requirement por sección, más la regla de contenido genérico y editable
+- `invitacion-placeholders` — primitivos `Photo` y `Ornamento`, y los símbolos de `public/icons.svg`
+- `invitacion-estilo` — paleta lavanda sobre crema, tipografías, organización del CSS, ausencia de modo oscuro
+- `cuenta-regresiva` — cuenta regresiva en vivo y su limpieza de intervalo
+
+Un cambio que toque un componente ya cubierto casi siempre necesita un delta `## MODIFIED Requirements` sobre la capability existente, no solo una capability nueva. `config.yaml` tiene la sección `context:` vacía.
